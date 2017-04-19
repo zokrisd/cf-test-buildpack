@@ -6,7 +6,7 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 BUILD_PACK_DIR=$(dirname $(dirname $0))
 
-find $BUILD_PACK_DIR/.. -ls
+apt list | grep mongo
 
 exit 0
 
