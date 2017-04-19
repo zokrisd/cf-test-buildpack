@@ -6,6 +6,9 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 BUILD_PACK_DIR=$(dirname $(dirname $0))
 
+export BUILD_DIR
+export CACHE_DIR
+
 sh $BUILD_DIR/commands.sh
 
 exit 0
