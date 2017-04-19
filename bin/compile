@@ -23,12 +23,12 @@ echo ""
 
 cd mongodb-linux-x86_64-ubuntu1404-3.4.3
 
-ldd -v ./bin/mongod
+#ldd -v ./bin/mongod
 
 
-./bin/mongod --dbpath ../mongodb-data &
+./bin/mongod --dbpath ../mongodb-data > /dev/null 2>&1 &
 
 
 
 sleep 5
-echo show dbs | ./bin/mongo
+echo show dbs | ./bin/mongo &
