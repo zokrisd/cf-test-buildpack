@@ -31,7 +31,9 @@ echo "Starting Mongo Server"
 cd /home/vcap/app/mongodb-linux-x86_64-ubuntu1404-3.4.3
 pwd
 
-./bin/mongod --dbpath ../mongodb-data > /dev/null
+#./bin/mongod --dbpath ../mongodb-data > /dev/null
+
+sleep 1800
 EOF
 chmod 755 "$BUILD_DIR/start.sh"
 
