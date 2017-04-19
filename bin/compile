@@ -12,6 +12,7 @@ export CACHE_DIR
 curl -o $BUILD_DIR/mongo.tgz https://fastdl.mongodb.org/linux/mongodb-linux-x86_64-ubuntu1404-3.4.3.tgz
 
 cd $BUILD_DIR
+pwd
 
 mkdir -p mongodb-data
 
@@ -31,6 +32,8 @@ cd $BUILD_DIR
 ./bin/mongod --dbpath ../mongodb-data > /dev/null 2>&1 &
 EOF
 chmod 755 "$BUILD_DIR/start.sh"
+
+sleep 5
 
 echo "==================================="
 cat "$BUILD_DIR/start.sh"
