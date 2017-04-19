@@ -16,19 +16,18 @@ cd $BUILD_DIR
 mkdir -p mongodb-data
 
 tar xvf mongo.tgz
-find . -ls
+#find . -ls
 
 echo "==================================="
-echo ""
+echo "Starting mongodb serv"
 
-cd mongodb-linux-x86_64-ubuntu1404-3.4.3
-
-#ldd -v ./bin/mongod
-
-
+cat > "$BUILD_DIR/start.sh" <<EOF
+#!/bin/bash
+#
+# Start mongodb server
+#
+echo "Starting Mongo Server"
+cd $BUILD_DIR
 ./bin/mongod --dbpath ../mongodb-data > /dev/null 2>&1 &
-
-
-
-sleep 5
-echo show dbs | ./bin/mongo &
+EOF
+chmod 755 "$BUILD_DIR/start.sh"
