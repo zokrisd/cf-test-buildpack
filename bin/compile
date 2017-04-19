@@ -28,7 +28,7 @@ cat > "$BUILD_DIR/start.sh" <<EOF
 # Start mongodb server
 #
 echo "Starting Mongo Server"
-cd $BUILD_DIR/mongodb-linux-x86_64-ubuntu1404-3.4.3
+cd /home/vcap/app/mongodb-linux-x86_64-ubuntu1404-3.4.3
 pwd
 
 ./bin/mongod --dbpath ../mongodb-data > /dev/null 2>&1 &
