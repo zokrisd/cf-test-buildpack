@@ -19,7 +19,7 @@ tar xvf mongo.tgz
 #find . -ls
 
 echo "==================================="
-echo "Starting mongodb serv"
+echo "Creating start script"
 
 cat > "$BUILD_DIR/start.sh" <<EOF
 #!/bin/bash
@@ -31,3 +31,9 @@ cd $BUILD_DIR
 ./bin/mongod --dbpath ../mongodb-data > /dev/null 2>&1 &
 EOF
 chmod 755 "$BUILD_DIR/start.sh"
+
+echo "==================================="
+cat "$BUILD_DIR/start.sh"
+
+echo "Leaving"
+
