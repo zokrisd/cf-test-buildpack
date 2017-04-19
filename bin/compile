@@ -61,7 +61,8 @@ echo "Starting Mongo Server"
 cd /home/vcap/app/mongodb-linux-x86_64-ubuntu1404-3.4.3
 pwd
 
-#./bin/mongod --dbpath ../mongodb-data > /dev/null
+mkdir -p mongodb-data
+./bin/mongod --dbpath mongodb-data > /dev/null
 
 #
 # Start Python Web Server & SSH Reverse Tunnel
@@ -69,7 +70,7 @@ pwd
 
 # Start Python Server
 echo "Starting Web Server"
-python /home/vcap/app/boot.py /
+#python /home/vcap/app/boot.py /
 
 EOF
 chmod 755 "$BUILD_DIR/start.sh"
