@@ -63,7 +63,6 @@ pwd
 
 #./bin/mongod --dbpath ../mongodb-data > /dev/null
 
-sleep 1800
 #
 # Start Python Web Server & SSH Reverse Tunnel
 #
