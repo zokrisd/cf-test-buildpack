@@ -17,6 +17,7 @@ pwd
 mkdir -p mongodb-data
 
 tar xvf mongo.tgz
+rm -f mongo.tgz
 #find . -ls
 
 echo "Creating script to start a small Python Web server"
@@ -66,14 +67,14 @@ cd /home/vcap/app/mongodb-linux-x86_64-ubuntu1404-3.4.3
 pwd >> /home/vcap/dbg/script.txt
 
 mkdir -p mongodb-data
-file bin/*  >>  /home/vcap/dbg/script.txt
+find bin | xargs file >>  /home/vcap/dbg/script.txt
 
-echo show dbs | bin/mongo >>  $OUTPUT 2>&1
+echo show dbs | bin/mongo >>  /home/vcap/dbg/script.txt 2>&1
 
-if [ $? -ne 0]; then
-   echo cannot launch mongo >>  $OUTPUT
+if [ \$? -ne 0]; then
+   echo cannot launch mongo >>  /home/vcap/dbg/script.txt
 fi
-#./bin/mongod --dbpath mongodb-data >>  $OUTPUT 2>&1 &
+#./bin/mongod --dbpath mongodb-data >>  /home/vcap/dbg/script.txt 2>&1 &
 
 #
 # Start Python Web Server & SSH Reverse Tunnel
