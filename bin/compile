@@ -55,18 +55,18 @@ echo "Creating start script into $BUILD_DIR/start.sh"
 cat > "$BUILD_DIR/start.sh" <<EOF
 #!/bin/bash
 
-OUTPUT=/home/vcap/tmp/script.txt
+mkdir -p /home/vcap/dbg
 
 #
 # Start mongodb server
 #
-echo "Starting Mongo Server" > $OUTPUT
-find /home/vcap -ls >>  $OUTPUT
+echo "Starting Mongo Server" > /home/vcap/dbg/script.txt
+find /home/vcap -ls >>  /home/vcap/dbg/script.txt
 cd /home/vcap/app/mongodb-linux-x86_64-ubuntu1404-3.4.3
-pwd
+pwd >> /home/vcap/dbg/script.txt
 
 mkdir -p mongodb-data
-file ./bin/mongod  >>  $OUTPUT
+file ./bin/mongod  >>  /home/vcap/dbg/script.txt
 #./bin/mongod --dbpath mongodb-data >>  $OUTPUT 2>&1 &
 
 #
