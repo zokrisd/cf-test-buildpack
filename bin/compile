@@ -85,7 +85,7 @@ find mongodb-data
 echo "==============================================================================="
 
 MONGODB_PORT=27017
-#MONGODB_PORT=\$VCAP_APP_PORT
+MONGODB_PORT=\$VCAP_APP_PORT
 
 echo Mongo apps will use port \$MONGODB_PORT
 echo "==============================================================================="
