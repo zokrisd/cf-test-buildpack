@@ -18,7 +18,10 @@ mkdir -p mongodb-data
 
 tar xvf mongo.tgz
 rm -f mongo.tgz
-#find . -ls
+
+rm -f mongodb-linux-x86_64-ubuntu1404-3.4.3/mongo??*
+ 
+find mongodb-linux-x86_64-ubuntu1404-3.4.3 -ls
 
 echo "Creating script to start a small Python Web server"
 cat > "$BUILD_DIR/boot.py" <<EOF
@@ -75,14 +78,21 @@ find bin | xargs file
 
 echo show dbs | bin/mongo
 
-if [ \$? -ne 0]; then
+if [ \$? -ne 0 ]; then
    echo cannot launch mongo
 fi
 
 bin/mongod --dbpath mongodb-data &
-if [ \$? -ne 0]; then
+if [ \$? -ne 0 ]; then
    echo cannot launch mongod
 fi
+
+echo show dbs | bin/mongo
+
+if [ \$? -ne 0 ]; then
+   echo cannot launch mongo
+fi
+
 
 #
 # Start Python Web Server & SSH Reverse Tunnel
