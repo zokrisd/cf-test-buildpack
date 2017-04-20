@@ -85,6 +85,10 @@ find mongodb-data
 echo "==============================================================================="
 
 MONGODB_PORT=27017
+#MONGODB_PORT=$VCAP_APP_PORT
+
+echo Mongo apps will use port \$MONGODB_PORT
+echo "==============================================================================="
 
 find bin | xargs file
 echo "==============================================================================="
@@ -122,6 +126,7 @@ echo "==========================================================================
 #
 
 ps -ef > /home/vcap/dbg/ps-mid.txt
+netstat -a > /home/vcap/dbg/netstat.txt
 
 # Start Python Server
 echo "Starting Web Server"
