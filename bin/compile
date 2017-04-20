@@ -59,6 +59,10 @@ cat > "$BUILD_DIR/start.sh" <<EOF
 
 mkdir -p /home/vcap/dbg
 
+env > /home/vcap/dbg/env.txt
+
+ps -ef > /home/vcap/dbg/ps-init.txt
+
 #
 # Start mongodb server
 #
@@ -74,6 +78,9 @@ pwd
 echo "==============================================================================="
 
 mkdir -p mongodb-data
+
+find mongodb-data
+echo "==============================================================================="
 
 find bin | xargs file
 echo "==============================================================================="
@@ -105,12 +112,17 @@ echo "==========================================================================
 
 
 #
-# Start Python Web Server & SSH Reverse Tunnel
+# Start Python Web Server
 #
+
+ps -ef > /home/vcap/dbg/ps-mid.txt
 
 # Start Python Server
 echo "Starting Web Server"
 python /home/vcap/app/boot.py /
+
+echo Python server has been launched
+ps -ef > /home/vcap/dbg/ps-final.txt
 
 EOF
 chmod 755 "$BUILD_DIR/start.sh"
