@@ -21,7 +21,7 @@ rm -f mongodb-linux-x86_64-ubuntu1404-3.4.3/bin/mongo??*
 rm -f mongodb-linux-x86_64-ubuntu1404-3.4.3/bin/mongos
 rm -f mongodb-linux-x86_64-ubuntu1404-3.4.3/bin/[^m]*
 
-mkdir -p mongodb-linux-x86_64-ubuntu1404-3.4.3/mongo-dbdata
+mkdir -p mongodb-linux-x86_64-ubuntu1404-3.4.3/mongodb-data
 
 find mongodb-linux-x86_64-ubuntu1404-3.4.3 -ls
 
