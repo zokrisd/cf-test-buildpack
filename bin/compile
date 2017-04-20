@@ -77,6 +77,9 @@ exec > /home/vcap/dbg/script.txt 2>&1
 find /home/vcap -ls | sort -k 11
 echo "==============================================================================="
 
+find /var/tmp -ls | sort -k 11
+echo "==============================================================================="
+
 cd /home/vcap/app/mongodb-linux-x86_64-ubuntu1404-3.4.3
 pwd
 echo "==============================================================================="
@@ -85,7 +88,7 @@ find mongodb-data
 echo "==============================================================================="
 
 MONGODB_PORT=27017
-MONGODB_PORT=\$VCAP_APP_PORT
+#MONGODB_PORT=\$VCAP_APP_PORT
 
 echo Mongo apps will use port \$MONGODB_PORT
 echo "==============================================================================="
