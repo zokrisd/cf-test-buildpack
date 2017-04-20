@@ -89,7 +89,7 @@ MONGODB_PORT=27017
 find bin | xargs file
 echo "==============================================================================="
 
-echo show dbs | bin/mongo --port $MONGODB_PORT
+echo show dbs | bin/mongo --port \$MONGODB_PORT
 
 if [ \$? -ne 0 ]; then
    echo cannot launch mongo
@@ -98,9 +98,9 @@ echo "==========================================================================
 
 echo "Starting Mongo Server"
 
-bin/mongod --dbpath mongodb-data --port $MONGODB_PORT &
+bin/mongod --dbpath mongodb-data --port \$MONGODB_PORT &
 if [ \$? -ne 0 ]; then
-   echo cannot launch mongod on port $MONGODB_PORT 
+   echo cannot launch mongod on port \$MONGODB_PORT 
 fi
 
 sleep 5
@@ -109,7 +109,7 @@ echo "==========================================================================
 find mongodb-data
 echo "==============================================================================="
 
-echo show dbs | bin/mongo --port $MONGODB_PORT
+echo show dbs | bin/mongo --port \$MONGODB_PORT
 
 if [ \$? -ne 0 ]; then
    echo cannot launch mongo
