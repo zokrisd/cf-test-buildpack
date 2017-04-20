@@ -91,9 +91,11 @@ bin/mongod --dbpath mongodb-data &
 if [ \$? -ne 0 ]; then
    echo cannot launch mongod
 fi
-echo "==============================================================================="
 
 sleep 5
+echo "==============================================================================="
+
+
 echo show dbs | bin/mongo
 
 if [ \$? -ne 0 ]; then
