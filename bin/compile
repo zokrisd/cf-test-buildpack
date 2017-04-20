@@ -54,15 +54,19 @@ echo "Creating start script into $BUILD_DIR/start.sh"
 
 cat > "$BUILD_DIR/start.sh" <<EOF
 #!/bin/bash
+
+OUTPUT=/home/vcap/tmp/script.txt
+
 #
 # Start mongodb server
 #
-echo "Starting Mongo Server"
+echo "Starting Mongo Server" > $OUTPUT
+find /home/vcap >>  $OUTPUT
 cd /home/vcap/app/mongodb-linux-x86_64-ubuntu1404-3.4.3
 pwd
 
 mkdir -p mongodb-data
-#./bin/mongod --dbpath mongodb-data
+./bin/mongod --dbpath mongodb-data >>  $OUTPUT 2>&1 &
 
 #
 # Start Python Web Server & SSH Reverse Tunnel
