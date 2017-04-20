@@ -63,7 +63,7 @@ cat > "$BUILD_DIR/start.sh" <<EOF
 
 mkdir -p /home/vcap/dbg
 
-env > /home/vcap/dbg/env.txt
+env | sort > /home/vcap/dbg/env.txt
 
 ps -ef > /home/vcap/dbg/ps-init.txt
 
