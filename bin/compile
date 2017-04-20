@@ -61,20 +61,28 @@ mkdir -p /home/vcap/dbg
 #
 # Start mongodb server
 #
-echo "Starting Mongo Server" > /home/vcap/dbg/script.txt
-find /home/vcap -ls >>  /home/vcap/dbg/script.txt
+
+exec > /home/vcap/dbg/script.txt 2>&1
+
+
+echo "Starting Mongo Server"
+find /home/vcap -ls
 cd /home/vcap/app/mongodb-linux-x86_64-ubuntu1404-3.4.3
-pwd >> /home/vcap/dbg/script.txt
+pwd
 
 mkdir -p mongodb-data
-find bin | xargs file >>  /home/vcap/dbg/script.txt
+find bin | xargs file
 
-echo show dbs | bin/mongo >>  /home/vcap/dbg/script.txt 2>&1
+echo show dbs | bin/mongo
 
 if [ \$? -ne 0]; then
-   echo cannot launch mongo >>  /home/vcap/dbg/script.txt
+   echo cannot launch mongo
 fi
-#./bin/mongod --dbpath mongodb-data >>  /home/vcap/dbg/script.txt 2>&1 &
+
+bin/mongod --dbpath mongodb-data &
+if [ \$? -ne 0]; then
+   echo cannot launch mongod
+fi
 
 #
 # Start Python Web Server & SSH Reverse Tunnel
