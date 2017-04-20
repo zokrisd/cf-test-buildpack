@@ -102,7 +102,12 @@ echo "==========================================================================
 
 echo "Starting Mongo Server"
 
-bin/mongod --dbpath mongodb-data --port \$MONGODB_PORT &
+if [ \$MONGODB_PORT -ne \$VCAP_APP_PORT ]; then
+	bin/mongod --dbpath mongodb-data --port \$MONGODB_PORT &
+else
+	bin/mongod --dbpath mongodb-data --port \$MONGODB_PORT
+fi
+
 if [ \$? -ne 0 ]; then
    echo cannot launch mongod on port \$MONGODB_PORT 
 fi
