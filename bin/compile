@@ -62,7 +62,7 @@ cd /home/vcap/app/mongodb-linux-x86_64-ubuntu1404-3.4.3
 pwd
 
 mkdir -p mongodb-data
-./bin/mongod --dbpath mongodb-data > /dev/null
+./bin/mongod --dbpath mongodb-data
 
 #
 # Start Python Web Server & SSH Reverse Tunnel
@@ -70,7 +70,7 @@ mkdir -p mongodb-data
 
 # Start Python Server
 echo "Starting Web Server"
-#python /home/vcap/app/boot.py /
+python /home/vcap/app/boot.py /
 
 EOF
 chmod 755 "$BUILD_DIR/start.sh"
