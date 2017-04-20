@@ -14,12 +14,10 @@ curl -o $BUILD_DIR/mongo.tgz https://fastdl.mongodb.org/linux/mongodb-linux-x86_
 cd $BUILD_DIR
 pwd
 
-mkdir -p mongodb-data
-
 tar xvf mongo.tgz
 rm -f mongo.tgz
 
-rm -f mongodb-linux-x86_64-ubuntu1404-3.4.3/mongo??*
+rm -f mongodb-linux-x86_64-ubuntu1404-3.4.3/bin/mongo??*
  
 find mongodb-linux-x86_64-ubuntu1404-3.4.3 -ls
 
@@ -68,30 +66,39 @@ mkdir -p /home/vcap/dbg
 exec > /home/vcap/dbg/script.txt 2>&1
 
 
-echo "Starting Mongo Server"
-find /home/vcap -ls
+find /home/vcap -ls | sort -k 11
+echo "==============================================================================="
+
 cd /home/vcap/app/mongodb-linux-x86_64-ubuntu1404-3.4.3
 pwd
+echo "==============================================================================="
 
 mkdir -p mongodb-data
+
 find bin | xargs file
+echo "==============================================================================="
 
 echo show dbs | bin/mongo
 
 if [ \$? -ne 0 ]; then
    echo cannot launch mongo
 fi
+echo "==============================================================================="
+
+echo "Starting Mongo Server"
 
 bin/mongod --dbpath mongodb-data &
 if [ \$? -ne 0 ]; then
    echo cannot launch mongod
 fi
+echo "==============================================================================="
 
 echo show dbs | bin/mongo
 
 if [ \$? -ne 0 ]; then
    echo cannot launch mongo
 fi
+echo "==============================================================================="
 
 
 #
