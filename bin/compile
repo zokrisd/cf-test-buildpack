@@ -87,8 +87,13 @@ echo "==========================================================================
 find mongodb-data
 echo "==============================================================================="
 
+MONGO_USES_VCAP=0
+
+if [ \$MONGO_USES_VCAP -eq 0 ]; then
 MONGODB_PORT=27017
+else
 MONGODB_PORT=\`expr \$VCAP_APP_PORT - 1000\`
+fi
 
 echo Mongo apps will use port \$MONGODB_PORT
 echo "==============================================================================="
@@ -105,7 +110,7 @@ echo "==========================================================================
 
 echo "Starting Mongo Server"
 
-if [ \$MONGODB_PORT -ne \$VCAP_APP_PORT ]; then
+if [ \$MONGO_USES_VCAP -eq 0 ]; then
 	bin/mongod --dbpath mongodb-data --port \$MONGODB_PORT --rest &
 else
 	bin/mongod --dbpath mongodb-data --port \$MONGODB_PORT --rest
@@ -137,7 +142,7 @@ ps -ef > /home/vcap/dbg/ps-mid.txt
 netstat -a > /home/vcap/dbg/netstat.txt
 
 # Start Python Server
-if [ \$MONGODB_PORT -ne \$VCAP_APP_PORT ]; then
+if [ \$MONGO_USES_VCAP -eq 0 ]; then
 	echo "Starting Web Server"
 	python /home/vcap/app/boot.py /
 fi
