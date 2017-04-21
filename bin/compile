@@ -88,7 +88,7 @@ find mongodb-data
 echo "==============================================================================="
 
 MONGODB_PORT=27017
-#MONGODB_PORT=\$VCAP_APP_PORT
+#MONGODB_PORT=`expr \$VCAP_APP_PORT - 1000`
 
 echo Mongo apps will use port \$MONGODB_PORT
 echo "==============================================================================="
@@ -106,9 +106,9 @@ echo "==========================================================================
 echo "Starting Mongo Server"
 
 if [ \$MONGODB_PORT -ne \$VCAP_APP_PORT ]; then
-	bin/mongod --dbpath mongodb-data --port \$MONGODB_PORT &
+	bin/mongod --dbpath mongodb-data --port \$MONGODB_PORT --rest &
 else
-	bin/mongod --dbpath mongodb-data --port \$MONGODB_PORT
+	bin/mongod --dbpath mongodb-data --port \$MONGODB_PORT --rest
 fi
 
 if [ \$? -ne 0 ]; then
